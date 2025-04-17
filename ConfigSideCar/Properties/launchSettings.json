@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ConfigSideCar": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

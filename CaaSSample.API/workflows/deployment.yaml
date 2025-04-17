@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: caas-sample-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: caas-sample
+  template:
+    metadata:
+      annotations:
+        configmap.reloader.stakater.com/reload: "my-config"
+      annotations:
+        secret.reloader.stakater.com/reload: "my-secret"
+      labels:
+        app: caas-sample
+    spec:
+      containers:
+      - name: caas-sample
+        image: docker.io/library/caassampleapi:latest # Use your Docker image
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080 # Port inside the container
+          protocol: TCP
+        - containerPort: 8081 # Port inside the container
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: my-config # ConfigMap name
+        # - secretRef:
+        #     name: my-secret # Secret name

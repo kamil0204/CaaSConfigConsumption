@@ -1,0 +1,6 @@
+services:
+  caassample.api:
+    image: ${DOCKER_REGISTRY-}caassampleapi
+    build:
+      context: .
+      dockerfile: CaaSSample.API/Dockerfile

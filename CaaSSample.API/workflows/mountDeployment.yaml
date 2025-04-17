@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: caas-sample-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: caas-sample
+  template:
+    metadata:
+      labels:
+        app: caas-sample
+    spec:
+      containers:
+      - name: caas-sample
+        image: docker.io/library/caassampleapi:latest # Use your Docker image
+        imagePullPolicy: Never
+        volumeMounts:
+        - name: caas-sample-config-volume
+          mountPath: /app/config
+        ports:
+        - containerPort: 8080 # Port inside the container
+          protocol: TCP
+        - containerPort: 8081 # Port inside the container
+          protocol: TCP
+      volumes:
+      - name: caas-sample-config-volume
+        configMap:
+          name: my-config

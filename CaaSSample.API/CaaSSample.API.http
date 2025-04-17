@@ -1,0 +1,11 @@
+@CaaSSample.API_HostAddress = http://127.0.0.1:51968
+
+GET {{CaaSSample.API_HostAddress}}/api/Sample/
+Accept: application/json
+
+###
+
+GET {{CaaSSample.API_HostAddress}}/api/Db/
+Accept: application/json
+
+###
