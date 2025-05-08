@@ -13,8 +13,8 @@ public class ConfigWatcherWorker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        var configMapDirectory = _config.GetValue<string>("ConfigMapMount")!;
-        var secretMapDirectory = _config.GetValue<string>("SecretMapMount")!;
+        var configMapDirectory = _config["ConfigMapMount"]!;
+        var secretMapDirectory = _config["SecretMapMount"]!;
         _logger.LogInformation("ConfigWatcherWorker is starting.");
 
         while (!stoppingToken.IsCancellationRequested)
